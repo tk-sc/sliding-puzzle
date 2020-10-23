@@ -1,0 +1,7 @@
+.choose-image {
+  background-image: url("../images/puzz.jpg");
+  min-width: 200px;
+  min-height: 200px;
+  background-size: cover;
+  background-position: center center;
+}
