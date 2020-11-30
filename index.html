@@ -276,38 +276,27 @@
 
     <script>
       var normArr = [0,1,2,3,4,5,6,7,8]
-      var imgObject = {
-        emptyPos:9,
-        restart:0,
-        moves:-1,
-        imgArr:[],
-        identifier:"img"
-      }
-
-      var imgObjectAI = {
-        emptyPos:9,
-        restart:0,
-        moves:-1,
-        imgArr:[],
-        identifier:"img_ai"
-      }
-
-      class PlayGround {
-        constructor(imgArr, moves, emptyPos, restart, identifier) {
+      
+      class ImgObj {
+        constructor(imgArr, identifier, zeroPictureId) {
           this.imgArr = imgArr
-          this.moves = imgArr
-          this.imgArr = imgArr
-          this.imgArr = imgArr
-          this.imgArr = imgArr
+          this.identifier = identifier
+          this.zeroPictureId = zeroPictureId
+          this.moves = -1
+          this.emptyPos = 9
+          this.restart = 0
         }
       }
+      
+      var imgObject = new ImgObj([], "img", "img8")
+      var imgObjectAI = new ImgObj([], "img_ai", "img_ai8")
 
-      function won() {
-        var img = document.getElementsByClassName("img8")[0];
-        img.style.top = "300px"
-        img.style.left = "300px"
-        imgInner = img.childNodes[1]
-        imgInner.style.transform = "translate(-300px, -300px)";
+      function won(blankImageId) {
+        // var img = document.getElementsByClassName(blankImageId)[0];
+        // img.style.top = "300px"
+        // img.style.left = "300px"
+        // imgInner = img.childNodes[1]
+        // imgInner.style.transform = "translate(-300px, -300px)";
         message = document.getElementById("message");
         message.innerHTML =
           "You won the game in " + moves.toString() + " moves";
@@ -318,40 +307,33 @@
         console.log("finish WON")
       }
 
-      function restartProp() {
-        var img = document.getElementsByClassName("img8")[0];
+      function restartProp(blankImageId) {
+        var img = document.getElementsByClassName(blankImageId)[0];
         imgInner = img.childNodes[1]
         imgInner.style.transform = "translate(-450px, -450px)";
         message = document.getElementById("message");
         message.innerHTML='';
       }
 
+
       // plotting random image and still checking is it win and still move component one by one
       function draw(imageObject) {
         imageObject.moves++
-        console.log(`solvable kah? ${isSolvable(im)}`)
+        // console.log(`solvable kah? ${isSolvable(imageObject.imgArr)}`)
         mov = document.getElementById("moves");
         mov.innerHTML = "MOVES: " + imageObject.moves.toString();
         let isDiff;
         isDiff = 0;
-        if (imageObject.restart == 1) {
-          im = shuffle([...normArr]);
-          for (var i = 0; i <= 8; i++) {
-            if (im[i] == 8) emptyPos = i + 1;
-          }
-          console.log(emptyPos);
-          restart = 0;
-          restartProp()
-        }
+
         for (var i = 0; i < 9; i++) {
-          if (im[i] != normArr[i]) isDiff = 1;
+          if (imageObject.imgArr[i] != normArr[i]) isDiff = 1;
         }
-        console.log(`diff position ${im}`);
-        console.log(normArr);
+        // console.log(`diff position ${imageObject.imgArr}`);
+        // console.log(normArr);
 
         for (var i = 0; i < 3; i++) {
           for (var j = 0; j < 3; j++) {
-            component(i, j);
+            component(i, j, imageObject);
           }
         }
 
@@ -359,172 +341,156 @@
 
         if (isDiff == 0) {
           console.log("congrats");
-          setTimeout(function(){
-            won();
-          }, 1000)
+            won(imageObject.zeroPictureId);
         }
       }
 
-      function component(x, y, image) {
-        let text = "img";
+      function component(x, y, imageObject) {
+        let text = imageObject.identifier
         let indexArr = x + 3 * y;
-        let imgPart = im[indexArr];
+        let imgPart = imageObject.imgArr[indexArr];
         text = text + imgPart.toString();
-        // console.log(`textnya ${text}`);
         let img = document.getElementsByClassName(text)[0];
+        // console.log(`textnya ${text}`,img);
         img.style.left = 150 * x + "px";
         img.style.top = 150 * y + "px";
       }
 
-      function moveup() {
-        if (restart == 1) {
-          draw();
-        } else if (emptyPos == 9 || emptyPos == 7 || emptyPos == 8) {
+      function moveup(imageObject) {
+        console.log(`ke atas ${imageObject.emptyPos}`)
+        if (imageObject.emptyPos == 9 || imageObject.emptyPos == 7 || imageObject.emptyPos == 8) {
           au = document.getElementById("no");
           au.play();
         } else {
           au = document.getElementById("cut");
           au.play();
-          var curr = emptyPos;
-          emptyPos = emptyPos + 3;
-          var next = emptyPos;
-          im[curr - 1] = im[next - 1];
-          im[next - 1] = 8;
-          draw();
+          var curr = imageObject.emptyPos;
+          imageObject.emptyPos = imageObject.emptyPos + 3;
+          var next = imageObject.emptyPos;
+          imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
+          imageObject.imgArr[next - 1] = 8;
+          draw(imageObject);
         }
-        console.log(emptyPos);
+        console.log(imageObject.emptyPos);
       }
 
-      function movedown() {
-        if (restart == 1) {
-          draw();
-        } else if (emptyPos == 1 || emptyPos == 2 || emptyPos == 3) {
+      function movedown(imageObject) {
+        if (imageObject.emptyPos == 1 || imageObject.emptyPos == 2 || imageObject.emptyPos == 3) {
           au = document.getElementById("no");
           au.play();
         } else {
           au = document.getElementById("cut");
           au.play();
-          let curr = emptyPos;
-          emptyPos = emptyPos - 3;
-          let next = emptyPos;
-          im[curr - 1] = im[next - 1];
-          im[next - 1] = 8;
-          draw();
+          let curr = imageObject.emptyPos;
+          imageObject.emptyPos = imageObject.emptyPos - 3;
+          let next = imageObject.emptyPos;
+          imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
+          imageObject.imgArr[next - 1] = 8;
+          draw(imageObject);
         }
-        console.log(emptyPos);
+        console.log(imageObject.emptyPos);
       }
 
-      function moveleft() {
-        if (restart == 1) {
-          draw();
-        } else if (emptyPos == 6 || emptyPos == 9 || emptyPos == 3) {
+      function moveleft(imageObject) {
+        if (imageObject.emptyPos == 6 || imageObject.emptyPos == 9 || imageObject.emptyPos == 3) {
           au = document.getElementById("no");
           au.play();
         } else {
           au = document.getElementById("cut");
           au.play();
-          var curr = emptyPos;
-          emptyPos = emptyPos + 1;
-          var next = emptyPos;
-          im[curr - 1] = im[next - 1];
-          im[next - 1] = 8;
-          draw();
+          var curr = imageObject.emptyPos;
+          imageObject.emptyPos = imageObject.emptyPos + 1;
+          var next = imageObject.emptyPos;
+          imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
+          imageObject.imgArr[next - 1] = 8;
+          draw(imageObject);
         }
-        console.log(emptyPos);
+        console.log(imageObject.emptyPos);
       }
 
-      function moveright() {
-        if (restart == 1) {
-          draw();
-        } else if (emptyPos == 1 || emptyPos == 4 || emptyPos == 7) {
+      function moveright(imageObject) {
+        if (imageObject.emptyPos == 1 || imageObject.emptyPos == 4 || imageObject.emptyPos == 7) {
           au = document.getElementById("no");
           au.play();
         } else {
           au = document.getElementById("cut");
           au.play();
-          var curr = emptyPos;
-          emptyPos = emptyPos - 1;
-          var next = emptyPos;
-          im[curr - 1] = im[next - 1];
-          im[next - 1] = 8;
-          draw();
+          var curr = imageObject.emptyPos;
+          imageObject.emptyPos = imageObject.emptyPos - 1;
+          var next = imageObject.emptyPos;
+          imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
+          imageObject.imgArr[next - 1] = 8;
+          draw(imageObject);
         }
-        console.log(emptyPos);
+        console.log(imageObject.emptyPos);
       }
 
       //program start
       function start() {
+        console.log("Mulai")
         let tempShuffledArr = shuffle([...normArr])
-        while (!isSolvable(tempShuffledArr)) {
-          tempShuffledArr = shuffle([...normArr])
-        }
         imgObject.imgArr = [...tempShuffledArr]
         imgObjectAI.imgArr = [...tempShuffledArr]
         for (var i = 0; i <= 8; i++) {
-          if (im[i] == 8) {
+          if (imgObject.imgArr[i] == 8) {
             imgObject.emptyPos = i + 1;
             imgObjectAI.emptyPos = i + 1;
           }
         }
+        // console.log(`Ini mulai ${imgObject.imgArr} \n ${tempShuffledArr}`)
         draw(imgObject)
         draw(imgObjectAI)
       }
 
       window.addEventListener("keydown", function (e) {
-        key = e.keyCode;
+        key = e.which;
         if (key == 37) {
           e.preventDefault();
-          moveleft();
+          moveleft(imgObject);
         }
         if (key == 38) {
           e.preventDefault();
-          moveup();
+          moveup(imgObject);
         }
         if (key == 39) {
           e.preventDefault();
-          moveright();
+          moveright(imgObject);
         }
         if (key == 40) {
           e.preventDefault();
-          movedown();
+          movedown(imgObject);
         }
         if (key == 83) {
           e.preventDefault();
-          console.log("searching nowie")
-          // start();
-          var result = search(im);
-          // console.log(result)
-          // runSolution(result, result.pathCost)
+          start();
+        }
+        if (key == 65) {
+          e.preventDefault();
+          searchValueWithAI(imgObjectAI)
         }
       });
 
-      function runSolution(goalState, counter) {
+      async function searchValueWithAI(imageObject) {
+        let tempShuffled = imageObject.imgArr
+        let result = await search(imgObjectAI);
+        imgObjectAI.imgArr = tempShuffled
+        draw(imgObjectAI)
+        console.log(`HASILNYA ADALAH`, result, result.pathCost, imgObjectAI)
+        runSolution(result, imgObjectAI, result.pathCost)
+      }
+
+      function runSolution(goalState, imageObject) {
         if (goalState == null) {
           return;
         } else {
-          let subtracted = counter-1
-          runSolution(goalState.previous, subtracted);
-          // i = 0
-          // while (i < 10) {
-          //   // console.log(i)
-          //   i++
-          // }
+          runSolution(goalState.previous, imageObject);
           setTimeout(function() {
-            console.log(counter)
-            console.log(goalState)
-            im = goalState.tiles;
-            draw();
-          }, 400*counter)
-          // console.log(im)
-          // console.log(`counternya ${counter}`);
-          // return; 
-          // console.log(goalState.action);
+            imageObject.imgArr = goalState.tiles;
+            draw(imageObject);
+          }, 100*goalState.pathCost)
         }
       }
 
-      function helo() {
-        console.log(`SAY HELLO ${im}`)
-      }
       // ctx.font = "30px Arial";
       // ctx.fillText("Hit S to start the game", 80, 210);
     </script>

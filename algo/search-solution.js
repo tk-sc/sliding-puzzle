@@ -1,34 +1,22 @@
 console.log("Search Algorithm Set UP!");
 
+//code taken from https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function demo() {
-  console.log('Taking a break...');
-  await sleep(2000);
-  console.log('Two seconds later, showing sleep in a loop...');
 
-  // Sleep in loop
-  for (let i = 0; i < 5; i++) {
-    if (i === 3)
-      await sleep(2000);
-    console.log(i);
-  }
-}
-
-
-async function search(tiles) {
+async function search(imageObject) {
   let frontier = [];
   let explored = [];
   let goal = null;
-  frontier.push(new State(tiles, 0, null, null));
+  frontier.push(new State(imageObject.imgArr, 0, null, null));
   while (frontier.length > 0) {
     let node = getSmallestInFrontier(frontier);
-    im = node.tiles
-    // await sleep(10)
-    draw()
-    if (isGoal(node)) {
+    await sleep(10)
+    imageObject.imgArr = node.tiles
+    draw(imageObject)
+    if (isGoal(node.tiles)) {
       console.log("MASUK KE GOAL")
       goal = node;
       console.log(`banyaknya explored ${explored.length}`)
@@ -164,8 +152,8 @@ function addToFrontier(state, frontier) {
   }
 }
 
-function isGoal(node) {
-  return node.tiles.reduce((acc, curr, index) => {
+function isGoal(tiles) {
+  return tiles.reduce((acc, curr, index) => {
     return acc && curr == index;
   }, true);
 }
