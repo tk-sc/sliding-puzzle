@@ -1,17 +1,40 @@
 console.log("Search Algorithm Set UP!");
 
-function search(tiles) {
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function demo() {
+  console.log('Taking a break...');
+  await sleep(2000);
+  console.log('Two seconds later, showing sleep in a loop...');
+
+  // Sleep in loop
+  for (let i = 0; i < 5; i++) {
+    if (i === 3)
+      await sleep(2000);
+    console.log(i);
+  }
+}
+
+
+async function search(tiles) {
   let frontier = [];
   let explored = [];
   let goal = null;
   frontier.push(new State(tiles, 0, null, null));
   while (frontier.length > 0) {
     let node = getSmallestInFrontier(frontier);
-    explored.push(node);
+    im = node.tiles
+    // await sleep(10)
+    draw()
     if (isGoal(node)) {
+      console.log("MASUK KE GOAL")
       goal = node;
+      console.log(`banyaknya explored ${explored.length}`)
       break;
     }
+    explored.push(node);
     let childs = getChildState(node);
     for (let i = 0; i < childs.length; i++) {
       if (!isExplored(childs[i], explored)) {
@@ -21,6 +44,7 @@ function search(tiles) {
   }
   console.log(goal);
   printSolution(goal);
+  return goal;
 }
 
 function heuristicCost(tiles) {
@@ -155,4 +179,4 @@ function printSolution(goalState) {
   }
 }
 
-export { search, isGoal, State };
+// export { search, isGoal, State };

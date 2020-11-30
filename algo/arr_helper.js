@@ -1,0 +1,39 @@
+function shuffle(array) {
+    let currInd = array.length;
+    let tempVal;
+    let generatedRandomIndex;
+
+    // shuffling
+    while (0 !== currInd) {
+      generatedRandomIndex = Math.floor(Math.random() * currInd);
+      currInd -= 1;
+
+      // changing location
+      tempVal = array[currInd];
+      array[currInd] = array[generatedRandomIndex];
+      array[generatedRandomIndex] = tempVal;
+    }
+
+    return array;
+  }
+
+  //taken from https://www.geeksforgeeks.org/check-instance-8-puzzle-solvable/
+  function getInvCount(arr) { 
+    let invCount = 0; 
+    for (let i = 0; i < 9 - 1; i++) {
+      for (let j = i+1; j < 9; j++) {
+         // Value 8 is used for empty space 
+         if (arr[j] != 8 && arr[i] != 8 &&  arr[i] > arr[j]) {
+              invCount++; 
+            }
+            }
+          }
+    return invCount; 
+  } 
+  
+  //taken from https://www.geeksforgeeks.org/check-instance-8-puzzle-solvable/
+  // This function returns true if given 8 puzzle is solvable. 
+  function isSolvable(arr) { 
+    let invCount = getInvCount(arr); 
+    return (invCount%2 == 0); 
+  } 
