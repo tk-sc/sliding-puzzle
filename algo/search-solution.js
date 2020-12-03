@@ -13,15 +13,15 @@ async function search(imageObject) {
   frontier.push(new State(imageObject.imgArr, 0, null, null));
   while (frontier.length > 0) {
     let node = getSmallestInFrontier(frontier);
-    await sleep(10)
+    await sleep(1)
     imageObject.imgArr = node.tiles
-    draw(imageObject)
-    if (isGoal(node.tiles)) {
+    if (isGoal(node.tiles) || imageObject.restart == 1) {
       console.log("MASUK KE GOAL")
       goal = node;
       console.log(`banyaknya explored ${explored.length}`)
       break;
     }
+    draw(imageObject)
     explored.push(node);
     let childs = getChildState(node);
     for (let i = 0; i < childs.length; i++) {
