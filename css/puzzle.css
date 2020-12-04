@@ -6,6 +6,11 @@
   background-position: center center;
 }
 
+body{
+  background: #ddf3f5;
+  font-family: 'Rubik', sans-serif;
+}
+
 .title {
   font-weight: 700;
   text-align: center;
@@ -48,7 +53,7 @@ canvas {
   height: 150px;
   overflow: hidden;
   position: absolute;
-  transition: all 0.1s;
+  transition: all 0.1s ease-in-out;
 }
 
 .tiles {
@@ -58,10 +63,11 @@ canvas {
   flex-wrap: wrap; */
   position: relative;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.248);
+  background: #2644467b;
 }
 
 .tile img {
-  transition: all 1s;
+  transition: all 1s ease-in-out;
 }
 
 .tile {
@@ -99,31 +105,34 @@ canvas {
 
 }
 
-body{
-  background: #ddf3f5;
-  font-family: 'Rubik', sans-serif;
-}
-
 #message,
 #message_ai
 {
-  color: #e36387
+  color: #e36387;
+  font-size: 2rem;
 }
 
 #moves,
 #moves_ai{
-  color: #ce5a7b
-/* color:#f2aaaa */
+  color: #ce5a7b;
+  font-size: 1.6rem;
 }
 
 #previous-button,
-#next-button{
+#next-button
+{
   background-color: #e36387;
   border: none;
 }
 
+#start-button{
+  background-color: #e8934e;
+  border: none
+}
+
 #previous-button:focus,
-#next-button:focus{
+#next-button:focus,
+#start-button:focus{
   border: none;
   box-shadow: none;
 }
@@ -131,4 +140,14 @@ body{
 #previous-button:hover,
 #next-button:hover{
   background-color: #bb4f6e;
+  border: none;
+}
+
+#start-button:hover{
+  border: none;
+  background-color: #da8844;
+}
+
+#start-button{
+  padding: 0.5rem 2rem 0.5rem 2rem
 }

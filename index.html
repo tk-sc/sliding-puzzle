@@ -32,33 +32,52 @@
     <!-- Navigation -->
     <div class="container-fluid mt-5">
       <div class="d-flex justify-content-center">
-      <h1 class="title">COVID-19 PUZZLE</h1>
-    </div>
+        <h1 class="title">COVID-19 PUZZLE</h1>
+      </div>
 
       <div class="row mb-5 mt-5">
         <div class="col-lg-2 my-auto">
-          <div class="w-100 h-100 d-flex justify-content-center">
-            <div class="image-preview d-flex align-items-center">
-              <div class="d-flex flex-column">
-                <img id="picture_preview" class="picture" src="" alt="image" />
-                <div class="image-preview-button d-flex">
-                  <button
-                    id="previous-button"
-                    onClick="prevQuestion()"
-                    type="button"
-                    class="btn btn-primary"
-                  >
-                    <
-                  </button>
-                  <button
-                    id="next-button"
-                    onClick="nextQuestion()"
-                    type="button"
-                    class="btn btn-primary"
-                  >
-                    >
-                  </button>
+          <div class="d-flex align-items-center">
+            <div>
+              <div class="w-100 h-100 d-flex justify-content-center">
+                <div class="image-preview d-flex align-items-center">
+                  <div class="d-flex flex-column">
+                    <img
+                      id="picture_preview"
+                      class="picture"
+                      src=""
+                      alt="image"
+                    />
+                    <div class="image-preview-button d-flex">
+                      <button
+                        id="previous-button"
+                        onClick="prevQuestion()"
+                        type="button"
+                        class="btn btn-primary"
+                      >
+                        <
+                      </button>
+                      <button
+                        id="next-button"
+                        onClick="nextQuestion()"
+                        type="button"
+                        class="btn btn-primary"
+                      >
+                        >
+                      </button>
+                    </div>
+                  </div>
                 </div>
+              </div>
+              <div class="d-flex justify-content-center mt-4">
+                <button
+                  id="start-button"
+                  onClick="triggerStart()"
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  Start
+                </button>
               </div>
             </div>
           </div>
@@ -242,7 +261,7 @@
         <div class="col-lg-10">
           <div class="d-flex justify-content-center">
             <div id="information" class="w-75 card text-white bg-dark mb-3">
-              <div class="card-header">For your information</div>
+              <div class="card-header">Pojok Info Kamu</div>
               <div class="card-body">
                 <h5 class="card-title">Lockdown</h5>
                 <p class="card-text">
@@ -282,7 +301,6 @@
       var normArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
       var datasCurrInd = 0;
       changeCurrQuestion(0);
-      window.addEventListener("keydown", controllerStart);
 
       class ImgObj {
         constructor(accessor) {
@@ -307,7 +325,6 @@
         if (datasCurrInd < datas.length - 1) {
           datasCurrInd += 1;
           changeCurrQuestion(datasCurrInd);
-          start();
         }
       }
 
@@ -315,7 +332,6 @@
         if (0 <= datasCurrInd) {
           datasCurrInd -= 1;
           changeCurrQuestion(datasCurrInd);
-          start();
         }
       }
 
@@ -373,7 +389,7 @@
         imgObject.moves = -1;
         imgObjectAI.moves = -1;
         window.removeEventListener("keydown", addGameControl);
-        window.addEventListener("keydown", controllerStart);
+        document.getElementById("start-button").disabled = false;
         changeCurrQuestion(datasCurrInd);
         console.log("finish WON");
       }
@@ -555,19 +571,12 @@
         draw(imgObjectAI);
       }
 
-      function controllerStart(e) {
-        key = e.which;
-        if (key == 83) {
-          e.preventDefault();
-          start();
-        }
-        if (key == 65) {
-          e.preventDefault();
-          document.getElementById("previous-button").disabled = true;
-          document.getElementById("next-button").disabled = true;
-          window.removeEventListener("keydown", controllerStart);
-          searchValueWithAI(imgObjectAI);
-        }
+      function triggerStart() {
+        start();
+        document.getElementById("previous-button").disabled = true;
+        document.getElementById("next-button").disabled = true;
+        document.getElementById("start-button").disabled = true;
+        searchValueWithAI(imgObjectAI);
       }
 
       function addGameControl(e) {
