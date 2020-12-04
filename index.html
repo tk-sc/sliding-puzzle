@@ -102,45 +102,53 @@
               <!-- <canvas id="canvas" height="450px" width="450px"></canvas> -->
               <div class="tiles">
                 <div class="tile img0" style="left: 0px; top: 0px">
+                  <div class="number0">1</div>
                   <img class="picture" />
                 </div>
                 <div class="tile img1" style="left: 150px; top: 0px">
+                  <div class="number1">2</div>
                   <img
                     class="picture"
                     style="transform: translate(-150px, 0)"
                   />
                 </div>
                 <div class="tile img2" style="left: 300px; top: 0px">
+                  <div class="number1">3</div>
                   <img
                     class="picture"
                     style="transform: translate(-300px, 0)"
                   />
                 </div>
                 <div class="tile img3" style="left: 0px; top: 150px">
+                  <div class="number1">4</div>
                   <img
                     class="picture"
                     style="transform: translate(0, -150px)"
                   />
                 </div>
                 <div class="tile img4" style="left: 150px; top: 150px">
+                  <div class="number1">5</div>
                   <img
                     class="picture"
                     style="transform: translate(-150px, -150px)"
                   />
                 </div>
                 <div class="tile img5" style="left: 300px; top: 150px">
+                  <div class="number1">6</div>
                   <img
                     class="picture"
                     style="transform: translate(-300px, -150px)"
                   />
                 </div>
                 <div class="tile img6" style="left: 0px; top: 300px">
+                  <div class="number1">7</div>
                   <img
                     class="picture"
                     style="transform: translate(0, -300px)"
                   />
                 </div>
                 <div class="tile img7" style="left: 150px; top: 300px">
+                  <div class="number1">8</div>
                   <img
                     class="picture"
                     style="transform: translate(-150px, -300px)"
@@ -518,8 +526,8 @@
         console.log("Mulai");
         let tempShuffledArr = shuffle([...normArr]);
         // test case: [1,7,6,8,3,2,4,0,5]
-        imgObject.imgArr = [1, 7, 6, 8, 3, 2, 4, 0, 5];
-        imgObjectAI.imgArr = [1, 7, 6, 8, 3, 2, 4, 0, 5];
+        imgObject.imgArr = [...tempShuffledArr];
+        imgObjectAI.imgArr = [...tempShuffledArr];
         for (var i = 0; i <= 8; i++) {
           if (imgObject.imgArr[i] == 8) {
             imgObject.emptyPos = i + 1;
@@ -606,7 +614,7 @@
               imageObject.imgArr = goalState.tiles;
               draw(imageObject);
             }
-          }, 200 * goalState.pathCost);
+          }, 1000 * goalState.pathCost);
         }
       }
 
