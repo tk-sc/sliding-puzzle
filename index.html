@@ -515,8 +515,8 @@
         console.log("Mulai");
         let tempShuffledArr = shuffle([...normArr]);
         // test case: [1,7,6,8,3,2,4,0,5]
-        imgObject.imgArr = [1, 7, 6, 8, 3, 2, 4, 0, 5];
-        imgObjectAI.imgArr = [1, 7, 6, 8, 3, 2, 4, 0, 5];
+        imgObject.imgArr = tempShuffledArr;
+        imgObjectAI.imgArr = tempShuffledArr;
         for (var i = 0; i <= 8; i++) {
           if (imgObject.imgArr[i] == 8) {
             imgObject.emptyPos = i + 1;
