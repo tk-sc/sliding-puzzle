@@ -6,14 +6,14 @@ function sleep(ms) {
 }
 
 
-async function search(imageObject) {
+function search(imageObject) {
   let frontier = [];
   let explored = [];
   let goal = null;
   frontier.push(new State(imageObject.imgArr, 0, null, null));
   while (frontier.length > 0) {
     let node = getSmallestInFrontier(frontier);
-    await sleep(1)
+    // await sleep(1)
     imageObject.imgArr = node.tiles
     if (isGoal(node.tiles) || imageObject.restart == 1) {
       console.log("MASUK KE GOAL")
