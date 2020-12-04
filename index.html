@@ -32,7 +32,7 @@
     <!-- Navigation -->
     <div class="container-fluid mt-5">
       <div class="d-flex justify-content-center">
-        <h1 class="title">COVID-19 PUZZLE </h1>
+        <h1 class="title">COVID-19 PUZZLE</h1>
       </div>
 
       <div class="row mb-5 mt-5">
@@ -328,6 +328,8 @@
         if (datasCurrInd < datas.length - 1) {
           datasCurrInd += 1;
           changeCurrQuestion(datasCurrInd);
+          let informationElement = document.getElementById("information");
+          informationElement.style.display = "none";
         }
       }
 
@@ -335,6 +337,8 @@
         if (0 <= datasCurrInd) {
           datasCurrInd -= 1;
           changeCurrQuestion(datasCurrInd);
+          let informationElement = document.getElementById("information");
+          informationElement.style.display = "none";
         }
       }
 
