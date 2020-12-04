@@ -151,3 +151,7 @@ canvas {
 #start-button{
   padding: 0.5rem 2rem 0.5rem 2rem
 }
+
+.legend{
+  text-align: center;
+}
