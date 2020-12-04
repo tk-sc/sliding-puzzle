@@ -1,5 +1,11 @@
 datas = [{
     location:"images/batuk.jpeg",
-    name:"batuk",
+    title:"batuk",
     description: "dummy dummy dummy dummy"
-}]
+},
+{
+    location:"images/cuci_tangan.jpg",
+    title:"cuci tangan",
+    description: "dummy dummy dummy dummy"
+}
+]

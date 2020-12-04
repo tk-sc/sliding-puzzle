@@ -37,10 +37,24 @@
           <div class="w-100 h-100 d-flex justify-content-center">
             <div class="image-preview d-flex align-items-center">
               <div class="d-flex flex-column">
-                <img id="picture_preview" class = "picture" src="" alt="image" />
+                <img id="picture_preview" class="picture" src="" alt="image" />
                 <div class="image-preview-button d-flex">
-                  <button type="button" class="btn btn-primary"><</button>
-                  <button type="button" class="btn btn-primary">></button>
+                  <button
+                    id="previous-button"
+                    onClick="prevQuestion()"
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    <
+                  </button>
+                  <button
+                    id="next-button"
+                    onClick="nextQuestion()"
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    >
+                  </button>
                 </div>
               </div>
             </div>
@@ -88,65 +102,54 @@
               <!-- <canvas id="canvas" height="450px" width="450px"></canvas> -->
               <div class="tiles">
                 <div class="tile img0" style="left: 0px; top: 0px">
-                  <img
-                    class="picture"
-                    src="images/batuk.jpeg"
-                  />
+                  <img class="picture" />
                 </div>
                 <div class="tile img1" style="left: 150px; top: 0px">
                   <img
                     class="picture"
                     style="transform: translate(-150px, 0)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img2" style="left: 300px; top: 0px">
                   <img
                     class="picture"
                     style="transform: translate(-300px, 0)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img3" style="left: 0px; top: 150px">
                   <img
                     class="picture"
                     style="transform: translate(0, -150px)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img4" style="left: 150px; top: 150px">
                   <img
                     class="picture"
                     style="transform: translate(-150px, -150px)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img5" style="left: 300px; top: 150px">
                   <img
                     class="picture"
                     style="transform: translate(-300px, -150px)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img6" style="left: 0px; top: 300px">
                   <img
                     class="picture"
                     style="transform: translate(0, -300px)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img7" style="left: 150px; top: 300px">
                   <img
                     class="picture"
                     style="transform: translate(-150px, -300px)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img8" style="left: 300px; top: 300px">
                   <img
                     class="picture"
                     style="transform: translate(-450px, -450px)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
               </div>
@@ -167,65 +170,54 @@
             <div class="image-puzzle">
               <div class="tiles">
                 <div class="tile img_ai0" style="left: 0px; top: 0px">
-                  <img
-                    class="picture"
-                    src="images/batuk.jpeg"
-                  />
+                  <img class="picture" />
                 </div>
                 <div class="tile img_ai1" style="left: 150px; top: 0px">
                   <img
                     class="picture"
                     style="transform: translate(-150px, 0)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img_ai2" style="left: 300px; top: 0px">
                   <img
                     class="picture"
                     style="transform: translate(-300px, 0)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img_ai3" style="left: 0px; top: 150px">
                   <img
                     class="picture"
                     style="transform: translate(0, -150px)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img_ai4" style="left: 150px; top: 150px">
                   <img
                     class="picture"
                     style="transform: translate(-150px, -150px)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img_ai5" style="left: 300px; top: 150px">
                   <img
                     class="picture"
                     style="transform: translate(-300px, -150px)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img_ai6" style="left: 0px; top: 300px">
                   <img
                     class="picture"
                     style="transform: translate(0, -300px)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img_ai7" style="left: 150px; top: 300px">
                   <img
                     class="picture"
                     style="transform: translate(-150px, -300px)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
                 <div class="tile img_ai8" style="left: 300px; top: 300px">
                   <img
                     class="picture"
                     style="transform: translate(-450px, -450px)"
-                    src="images/batuk.jpeg"
                   />
                 </div>
               </div>
@@ -277,17 +269,9 @@
 
     <script>
       var normArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-      console.log(datas)
-      let imageTiles = document.getElementsByClassName("picture")
-      console.log(imageTiles)
-      let arrImgTiles = [...imageTiles]
-      arrImgTiles.forEach(element => {
-        element.src = datas[0].location
-      });
-      
-      
-      // console.log(datas[0].location)
-      // element.src = datas[0].location
+      var datasCurrInd = 0;
+      changeCurrQuestion(0);
+
       class ImgObj {
         constructor(accessor) {
           this.imgArr = [];
@@ -304,20 +288,68 @@
       var imgObject = new ImgObj("");
       var imgObjectAI = new ImgObj("_ai");
 
-      function won() {
-        let img = null
-        if (imgObject.restart == 1) {
-          showMessage(imgObject.messageId, "You won the game in "+imgObject.moves.toString()+ " moves")
-          showMessage(imgObjectAI.messageId, "AI lose")
-          imgObjectAI.restart = 1;
-          showLastPicture(imgObject.zeroPictureId, 300, 300, -300, -300)
-        } else if (imgObjectAI.restart == 1) {
-          console.log("AI WIN")
-          showMessage(imgObjectAI.messageId, "AI won the game in "+imgObjectAI.moves.toString()+ " moves")
-          showMessage(imgObject.messageId, "You lose")
-          showLastPicture(imgObjectAI.zeroPictureId, 300, 300, -300, -300)
+      function nextQuestion() {
+        if (datasCurrInd < datas.length - 1) {
+          datasCurrInd += 1;
+          changeCurrQuestion(datasCurrInd);
         }
-        
+      }
+
+      function prevQuestion() {
+        if (0 <= datasCurrInd) {
+          datasCurrInd -= 1;
+          changeCurrQuestion(datasCurrInd);
+        }
+      }
+
+      function changeCurrQuestion(index) {
+        let imageTiles = document.getElementsByClassName("picture");
+        let arrImgTiles = [...imageTiles];
+        arrImgTiles.forEach((element) => {
+          element.src = datas[index].location;
+        });
+
+        let cardTitle = document.getElementsByClassName("card-title")[0];
+        let cardText = document.getElementsByClassName("card-text")[0];
+        cardTitle.innerHTML = datas[index].title
+        cardText.innerHTML = datas[index].description
+
+        if (datasCurrInd == datas.length - 1) {
+          document.getElementById("next-button").disabled = true;
+        } else if (0 <= datasCurrInd) {
+          document.getElementById("previous-button").disabled = true;
+        }
+
+        if (datasCurrInd > 0) {
+          document.getElementById("previous-button").disabled = false;
+        }
+
+        if (datasCurrInd < datas.length - 1) {
+          document.getElementById("next-button").disabled = false;
+        }
+
+      }
+
+      function won() {
+        let img = null;
+        if (imgObject.restart == 1) {
+          showMessage(
+            imgObject.messageId,
+            "You won the game in " + imgObject.moves.toString() + " moves"
+          );
+          showMessage(imgObjectAI.messageId, "AI lose");
+          imgObjectAI.restart = 1;
+          showLastPicture(imgObject.zeroPictureId, 300, 300, -300, -300);
+        } else if (imgObjectAI.restart == 1) {
+          console.log("AI WIN");
+          showMessage(
+            imgObjectAI.messageId,
+            "AI won the game in " + imgObjectAI.moves.toString() + " moves"
+          );
+          showMessage(imgObject.messageId, "You lose");
+          showLastPicture(imgObjectAI.zeroPictureId, 300, 300, -300, -300);
+        }
+
         au = document.getElementById("cheers");
         au.play();
         imgObject.moves = -1;
@@ -327,16 +359,16 @@
       }
 
       function showLastPicture(pictureId, x, y, xOff, yOff) {
-        let imgElement = document.getElementsByClassName(pictureId)[0]; 
-        imgElement.style.top = y+"px";
-        imgElement.style.left = x+"px";
+        let imgElement = document.getElementsByClassName(pictureId)[0];
+        imgElement.style.top = y + "px";
+        imgElement.style.left = x + "px";
         let imgInner = imgElement.childNodes[1];
-        imgInner.style.transform = "translate("+xOff+"px, "+yOff+"px)";
+        imgInner.style.transform = "translate(" + xOff + "px, " + yOff + "px)";
       }
 
       function showMessage(messageId, message) {
         let messageElement = document.getElementById(messageId);
-        messageElement.innerHTML = message
+        messageElement.innerHTML = message;
       }
 
       function restartProp(blankImageId) {
@@ -400,9 +432,9 @@
         } else {
           au = document.getElementById("cut");
           au.play();
-          var curr = imageObject.emptyPos;
+          let curr = imageObject.emptyPos;
           imageObject.emptyPos = imageObject.emptyPos + 3;
-          var next = imageObject.emptyPos;
+          let next = imageObject.emptyPos;
           imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
           imageObject.imgArr[next - 1] = 8;
           draw(imageObject);
@@ -442,9 +474,9 @@
         } else {
           au = document.getElementById("cut");
           au.play();
-          var curr = imageObject.emptyPos;
+          let curr = imageObject.emptyPos;
           imageObject.emptyPos = imageObject.emptyPos + 1;
-          var next = imageObject.emptyPos;
+          let next = imageObject.emptyPos;
           imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
           imageObject.imgArr[next - 1] = 8;
           draw(imageObject);
@@ -463,9 +495,9 @@
         } else {
           au = document.getElementById("cut");
           au.play();
-          var curr = imageObject.emptyPos;
+          let curr = imageObject.emptyPos;
           imageObject.emptyPos = imageObject.emptyPos - 1;
-          var next = imageObject.emptyPos;
+          let next = imageObject.emptyPos;
           imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
           imageObject.imgArr[next - 1] = 8;
           draw(imageObject);
@@ -478,8 +510,8 @@
         console.log("Mulai");
         let tempShuffledArr = shuffle([...normArr]);
         // test case: [1,7,6,8,3,2,4,0,5]
-        imgObject.imgArr = [1,7,6,8,3,2,4,0,5];
-        imgObjectAI.imgArr = [1,7,6,8,3,2,4,0,5];
+        imgObject.imgArr = [1, 7, 6, 8, 3, 2, 4, 0, 5];
+        imgObjectAI.imgArr = [1, 7, 6, 8, 3, 2, 4, 0, 5];
         for (var i = 0; i <= 8; i++) {
           if (imgObject.imgArr[i] == 8) {
             imgObject.emptyPos = i + 1;
@@ -488,10 +520,10 @@
         }
         // console.log(`Ini mulai ${imgObject.imgArr} \n ${tempShuffledArr}`)
         window.addEventListener("keydown", addGameControl);
-        showMessage(imgObject.messageId, "")
-        showMessage(imgObjectAI.messageId, "")
-        showLastPicture(imgObject.zeroPictureId, 300, 300, -450, -450)
-        showLastPicture(imgObjectAI.zeroPictureId, 300, 300, -450, -450)
+        showMessage(imgObject.messageId, "");
+        showMessage(imgObjectAI.messageId, "");
+        showLastPicture(imgObject.zeroPictureId, 300, 300, -450, -450);
+        showLastPicture(imgObjectAI.zeroPictureId, 300, 300, -450, -450);
         imgObject.moves = -1;
         imgObjectAI.moves = -1;
         imgObject.restart = 0;
@@ -499,40 +531,39 @@
         draw(imgObject);
         draw(imgObjectAI);
       }
-      
+
       window.addEventListener("keydown", function (e) {
-          key = e.which;
-          if (key == 83) {
-            e.preventDefault();
-            start();
-          }
-          if (key == 65) {
-            e.preventDefault();
-            searchValueWithAI(imgObjectAI);
-          }
+        key = e.which;
+        if (key == 83) {
+          e.preventDefault();
+          start();
+        }
+        if (key == 65) {
+          e.preventDefault();
+          searchValueWithAI(imgObjectAI);
+        }
       });
 
-      function addGameControl(e){
-          key = e.which;
-          if (key == 37) {
-            e.preventDefault();
-            moveleft(imgObject);
-          }
-          if (key == 38) {
-            e.preventDefault();
-            console.log("up")
-            moveup(imgObject);
-          }
-          if (key == 39) {
-            e.preventDefault();
-            moveright(imgObject);
-          }
-          if (key == 40) {
-            e.preventDefault();
-            movedown(imgObject);
+      function addGameControl(e) {
+        key = e.which;
+        if (key == 37) {
+          e.preventDefault();
+          moveleft(imgObject);
+        }
+        if (key == 38) {
+          e.preventDefault();
+          console.log("up");
+          moveup(imgObject);
+        }
+        if (key == 39) {
+          e.preventDefault();
+          moveright(imgObject);
+        }
+        if (key == 40) {
+          e.preventDefault();
+          movedown(imgObject);
         }
       }
-
 
       async function searchValueWithAI(imageObject) {
         let tempShuffled = imageObject.imgArr;
