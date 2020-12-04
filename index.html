@@ -34,6 +34,7 @@
 
       <div class="row mb-5 mt-5">
         <div class="col-lg-2 my-auto">
+          <h3 id="score">Score: 0</h3>
           <div class="w-100 h-100 d-flex justify-content-center">
             <div class="image-preview d-flex align-items-center">
               <div class="d-flex flex-column">
@@ -282,6 +283,7 @@
           this.restart = 0;
           this.moveId = `moves${accessor}`;
           this.messageId = `message${accessor}`;
+          this.score = 0
         }
       }
 
@@ -333,10 +335,13 @@
       function won() {
         let img = null;
         if (imgObject.restart == 1) {
+          imgObject.score++
           showMessage(
             imgObject.messageId,
             "You won the game in " + imgObject.moves.toString() + " moves"
           );
+          let score = document.getElementById("score");
+          score.innerHTML = "Score: "+imgObject.score
           showMessage(imgObjectAI.messageId, "AI lose");
           imgObjectAI.restart = 1;
           showLastPicture(imgObject.zeroPictureId, 300, 300, -300, -300);
@@ -371,13 +376,13 @@
         messageElement.innerHTML = message;
       }
 
-      function restartProp(blankImageId) {
-        var img = document.getElementsByClassName(blankImageId)[0];
-        imgInner = img.childNodes[1];
-        imgInner.style.transform = "translate(-450px, -450px)";
-        message = document.getElementById("message");
-        message.innerHTML = "";
-      }
+      // function restartProp(blankImageId) {
+      //   var img = document.getElementsByClassName(blankImageId)[0];
+      //   imgInner = img.childNodes[1];
+      //   imgInner.style.transform = "translate(-450px, -450px)";
+      //   message = document.getElementById("message");
+      //   message.innerHTML = "";
+      // }
 
       // plotting random image and still checking is it win and still move component one by one
       function draw(imageObject) {
