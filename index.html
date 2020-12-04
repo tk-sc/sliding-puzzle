@@ -34,7 +34,6 @@
 
       <div class="row mb-5 mt-5">
         <div class="col-lg-2 my-auto">
-          <h3 id="score">Score: 0</h3>
           <div class="w-100 h-100 d-flex justify-content-center">
             <div class="image-preview d-flex align-items-center">
               <div class="d-flex flex-column">
@@ -231,7 +230,7 @@
       <div class="row justify-content-end">
         <div class="col-lg-10">
           <div class="d-flex justify-content-center">
-            <div class="w-75 card text-white bg-dark mb-3">
+            <div id="information" class="w-75 card text-white bg-dark mb-3">
               <div class="card-header">For your information</div>
               <div class="card-body">
                 <h5 class="card-title">Lockdown</h5>
@@ -272,6 +271,7 @@
       var normArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
       var datasCurrInd = 0;
       changeCurrQuestion(0);
+      window.addEventListener("keydown", controllerStart);
 
       class ImgObj {
         constructor(accessor) {
@@ -283,7 +283,6 @@
           this.restart = 0;
           this.moveId = `moves${accessor}`;
           this.messageId = `message${accessor}`;
-          this.score = 0
         }
       }
 
@@ -294,6 +293,7 @@
         if (datasCurrInd < datas.length - 1) {
           datasCurrInd += 1;
           changeCurrQuestion(datasCurrInd);
+          start();
         }
       }
 
@@ -301,6 +301,7 @@
         if (0 <= datasCurrInd) {
           datasCurrInd -= 1;
           changeCurrQuestion(datasCurrInd);
+          start();
         }
       }
 
@@ -313,8 +314,8 @@
 
         let cardTitle = document.getElementsByClassName("card-title")[0];
         let cardText = document.getElementsByClassName("card-text")[0];
-        cardTitle.innerHTML = datas[index].title
-        cardText.innerHTML = datas[index].description
+        cardTitle.innerHTML = datas[index].title;
+        cardText.innerHTML = datas[index].description;
 
         if (datasCurrInd == datas.length - 1) {
           document.getElementById("next-button").disabled = true;
@@ -329,19 +330,15 @@
         if (datasCurrInd < datas.length - 1) {
           document.getElementById("next-button").disabled = false;
         }
-
       }
 
       function won() {
         let img = null;
         if (imgObject.restart == 1) {
-          imgObject.score++
           showMessage(
             imgObject.messageId,
             "You won the game in " + imgObject.moves.toString() + " moves"
           );
-          let score = document.getElementById("score");
-          score.innerHTML = "Score: "+imgObject.score
           showMessage(imgObjectAI.messageId, "AI lose");
           imgObjectAI.restart = 1;
           showLastPicture(imgObject.zeroPictureId, 300, 300, -300, -300);
@@ -355,11 +352,15 @@
           showLastPicture(imgObjectAI.zeroPictureId, 300, 300, -300, -300);
         }
 
-        au = document.getElementById("cheers");
+        let informationElement = document.getElementById("information");
+        informationElement.style.display = "block";
+        let au = document.getElementById("cheers");
         au.play();
         imgObject.moves = -1;
         imgObjectAI.moves = -1;
         window.removeEventListener("keydown", addGameControl);
+        window.addEventListener("keydown", controllerStart);
+        changeCurrQuestion(datasCurrInd)
         console.log("finish WON");
       }
 
@@ -512,6 +513,8 @@
 
       //program start
       function start() {
+        let informationElement = document.getElementById("information");
+        informationElement.style.display = "none";
         console.log("Mulai");
         let tempShuffledArr = shuffle([...normArr]);
         // test case: [1,7,6,8,3,2,4,0,5]
@@ -525,6 +528,7 @@
         }
         // console.log(`Ini mulai ${imgObject.imgArr} \n ${tempShuffledArr}`)
         window.addEventListener("keydown", addGameControl);
+
         showMessage(imgObject.messageId, "");
         showMessage(imgObjectAI.messageId, "");
         showLastPicture(imgObject.zeroPictureId, 300, 300, -450, -450);
@@ -537,7 +541,7 @@
         draw(imgObjectAI);
       }
 
-      window.addEventListener("keydown", function (e) {
+      function controllerStart(e) {
         key = e.which;
         if (key == 83) {
           e.preventDefault();
@@ -545,9 +549,13 @@
         }
         if (key == 65) {
           e.preventDefault();
+          document.getElementById("previous-button").disabled = true;
+          document.getElementById("next-button").disabled = true;
+          window.removeEventListener("keydown", controllerStart);
           searchValueWithAI(imgObjectAI);
         }
-      });
+      }
+
 
       function addGameControl(e) {
         key = e.which;
@@ -577,7 +585,13 @@
         draw(imgObjectAI);
         imgObjectAI.moves = -1;
         await sleep(3000);
-        console.log(`HASILNYA ADALAH`, result, result.pathCost, imgObjectAI);
+        console.log(
+          `HASILNYA ADALAH`,
+          result,
+          result.pathCost,
+          imgObjectAI,
+          imgObjectAI.restart
+        );
         runSolution(result, imgObjectAI, result.pathCost);
       }
 
@@ -587,6 +601,7 @@
         } else {
           runSolution(goalState.previous, imageObject);
           setTimeout(function () {
+            console.log(imageObject.restart);
             if (imageObject.restart != 1) {
               imageObject.imgArr = goalState.tiles;
               draw(imageObject);
