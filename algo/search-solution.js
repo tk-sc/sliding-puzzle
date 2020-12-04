@@ -23,7 +23,7 @@ function search(imageObject) {
     } else if (imageObject.restart == 2) {
       return;
     }
-    draw(imageObject)
+    // draw(imageObject)
     explored.push(node);
     let childs = getChildState(node);
     for (let i = 0; i < childs.length; i++) {
