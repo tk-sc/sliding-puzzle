@@ -60,7 +60,34 @@ canvas {
   transition: all 1s;
 }
 
+.tile {
+  border: solid 1px black;
+}
+
+.tile .number0 {
+  position: absolute;
+  top: 30%;
+  left: 48%;  
+  right: 50%;
+  font-size: 45px;
+  color: white;
+}
+
+.tile .number1 {
+  z-index: 2;
+  position: absolute;
+  top: 29%;
+  left: 43%;  
+  right: 50%;
+  font-size: 44px;
+  color: white;
+}
+
 .image-puzzle {
   display: flex;
   justify-content: center;
+}
+
+#information {
+  display: none;
 }

@@ -20,6 +20,8 @@ function search(imageObject) {
       goal = node;
       console.log(`banyaknya explored ${explored.length}`)
       break;
+    } else if (imageObject.restart == 2) {
+      return;
     }
     draw(imageObject)
     explored.push(node);
