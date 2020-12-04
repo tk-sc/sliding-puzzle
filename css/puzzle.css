@@ -1,0 +1,93 @@
+.choose-image {
+  background-image: url("../images/puzz.jpg");
+  min-width: 200px;
+  min-height: 200px;
+  background-size: cover;
+  background-position: center center;
+}
+
+body {
+  font-family: "Raleway";
+}
+
+.title {
+  font-family: Raleway;
+  font-weight: bold;
+  text-align: center;
+  color: #000000;
+}
+
+#picture_preview{
+  width: 100%;
+  height: 100%;
+}
+
+.image-preview-button button {
+  text-align: center;
+  border-radius: 0;
+  width: 50%;
+}
+
+canvas {
+  width: 450px;
+  height: 450px;
+  border: 5px solid black;
+  margin: auto;
+}
+
+.picture {
+  width: 450px;
+  height: 450px;
+}
+
+.tile {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: absolute;
+  transition: all 0.1s;
+}
+
+.tiles {
+  width: 450px;
+  height: 450px;
+  /* display: flex;
+  flex-wrap: wrap; */
+  position: relative;
+}
+
+.tile img {
+  transition: all 1s;
+}
+
+.tile {
+  border: solid 1px black;
+}
+
+.tile .number0 {
+  position: absolute;
+  top: 30%;
+  left: 48%;  
+  right: 50%;
+  font-size: 45px;
+  color: white;
+}
+
+.tile .number1 {
+  z-index: 2;
+  position: absolute;
+  top: 29%;
+  left: 43%;  
+  right: 50%;
+  font-size: 44px;
+  color: white;
+}
+
+.image-puzzle {
+  display: flex;
+  justify-content: center;
+}
+
+#information {
+  display: none;
+}
