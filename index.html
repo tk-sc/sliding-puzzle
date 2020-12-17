@@ -1,285 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <title>COVID-19 Puzzle</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <!-- Bootstrap core CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
+  <title>COVID-19 Puzzle</title>
 
-    <!-- font -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
-    <!-- Custom styles for this template -->
-    <link href="css/puzzle.css" rel="stylesheet" />
-  </head>
+  <!-- font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
-  <body>
-    <!-- Navigation -->
-    <div class="container-fluid mt-5">
-      <div class="d-flex justify-content-center">
-        <h1 class="title">COVID-19 PUZZLE</h1>
-      </div>
+  <!-- Custom styles for this template -->
+  <link href="css/puzzle.css" rel="stylesheet" />
+</head>
 
-      <div class="row mb-5 mt-5">
-        <div class="col-lg-2 my-auto">
-          <div class="d-flex align-items-center">
-            <div>
-              <div class="w-100 h-100 d-flex justify-content-center">
-                <div class="image-preview d-flex align-items-center">
-                  <div class="d-flex flex-column">
-                    <img
-                      id="picture_preview"
-                      class="picture"
-                      src=""
-                      alt="image"
-                    />
-                    <div class="image-preview-button d-flex">
-                      <button
-                        id="previous-button"
-                        onClick="prevQuestion()"
-                        type="button"
-                        class="btn btn-primary"
-                      >
-                        <
-                      </button>
-                      <button
-                        id="next-button"
-                        onClick="nextQuestion()"
-                        type="button"
-                        class="btn btn-primary"
-                      >
+<body>
+  <!-- Navigation -->
+  <div class="container-fluid mt-5">
+    <div class="d-flex justify-content-center">
+      <h1 class="title">COVID-19 PUZZLE</h1>
+    </div>
+
+    <div class="row mb-5 mt-5">
+      <div class="col-lg-2 my-auto">
+        <div class="d-flex align-items-center">
+          <div>
+            <div class="w-100 h-100 d-flex justify-content-center">
+              <div class="image-preview d-flex align-items-center">
+                <div class="d-flex flex-column">
+                  <img id="picture_preview" class="picture" src="" alt="image" />
+                  <div class="image-preview-button d-flex">
+                    <button id="previous-button" onClick="prevQuestion()" type="button" class="btn btn-primary">
+                      < </button> <button id="next-button" onClick="nextQuestion()" type="button"
+                        class="btn btn-primary">
                         >
-                      </button>
-                    </div>
+                    </button>
                   </div>
                 </div>
               </div>
-              <h2 class="d-flex justify-content-center mt-4" id="difficulty">Tingkat kesulitan</h2>
-              <div class="switch-field d-flex justify-content-center">
-                <input onclick="changeDifficulty('easy')" type="radio" id="radio-easy" name="switch-two" value="Easy"  />
-                <label for="radio-easy" style="font-size:0.7vw">Easy</label>
-                <input onclick="changeDifficulty('medium')" type="radio" id="radio-medium" name="switch-two" value="Medium" checked/>
-                <label for="radio-medium" style="font-size:0.7vw">Medium</label>
-                <input onclick="changeDifficulty('hard')" type="radio" id="radio-hard" name="switch-two" value="Hard" />
-                <label for="radio-hard" style="font-size:0.7vw">Hard</label>
-              </div>
-              <div class="d-flex justify-content-center mt-4">
-                <button
-                  id="start-button"
-                  onClick="triggerStart()"
-                  type="button"
-                  class="btn btn-primary"
-                >
-                  Start
-                </button>
-              </div>
-              <div class="legend d-flex justify-content-center mt-3">
-                Gerakan puzzle menggunakan panah :)
-              </div>
+            </div>
+            <h2 class="d-flex justify-content-center mt-4" id="difficulty">Tingkat kesulitan</h2>
+            <div class="switch-field d-flex justify-content-center">
+              <input onclick="changeDifficulty('easy')" type="radio" id="radio-easy" name="switch-two" value="Easy" />
+              <label for="radio-easy" style="font-size:0.7vw">Easy</label>
+              <input onclick="changeDifficulty('medium')" type="radio" id="radio-medium" name="switch-two"
+                value="Medium" checked />
+              <label for="radio-medium" style="font-size:0.7vw">Medium</label>
+              <input onclick="changeDifficulty('hard')" type="radio" id="radio-hard" name="switch-two" value="Hard" />
+              <label for="radio-hard" style="font-size:0.7vw">Hard</label>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+              <button id="start-button" onClick="triggerStart()" type="button" class="btn btn-primary">
+                Start
+              </button>
+            </div>
+            <div class="legend d-flex justify-content-center mt-3">
+              Gerakan puzzle menggunakan panah :)
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- puzzle image -->
-        <div class="col-lg-5 my-auto">
-          <div style="text-align: center">
-            <div style="">
-              <h1 id="message"></h1>
-            </div>
-            <div style="">
-              <h1 id="moves">MOVES 0</h1>
-
-              <audio
-                id="cheers"
-                controls="none"
-                preload="auto"
-                style="display: none"
-              >
-                <source src="won.m4a" type="audio/mp3" />
-              </audio>
-
-              <audio
-                id="cut"
-                controls="none"
-                preload="auto"
-                style="display: none"
-              >
-                <source src="cut.mp4" type="audio/mp4" />
-              </audio>
-
-              <audio
-                id="no"
-                controls="none"
-                preload="auto"
-                style="display: none"
-              >
-                <source src="no.mp4" type="audio/mp4" />
-              </audio>
-            </div>
-
-            <div class="image-puzzle">
-              <!-- <canvas id="canvas" height="450px" width="450px"></canvas> -->
-              <div class="tiles">
-                <div class="tile img0" style="left: 0px; top: 0px">
-                  <div class="number0">1</div>
-                  <img class="picture" />
-                </div>
-                <div class="tile img1" style="left: 150px; top: 0px">
-                  <div class="number1">2</div>
-                  <img
-                    class="picture"
-                    style="transform: translate(-150px, 0)"
-                  />
-                </div>
-                <div class="tile img2" style="left: 300px; top: 0px">
-                  <div class="number1">3</div>
-                  <img
-                    class="picture"
-                    style="transform: translate(-300px, 0)"
-                  />
-                </div>
-                <div class="tile img3" style="left: 0px; top: 150px">
-                  <div class="number1">4</div>
-                  <img
-                    class="picture"
-                    style="transform: translate(0, -150px)"
-                  />
-                </div>
-                <div class="tile img4" style="left: 150px; top: 150px">
-                  <div class="number1">5</div>
-                  <img
-                    class="picture"
-                    style="transform: translate(-150px, -150px)"
-                  />
-                </div>
-                <div class="tile img5" style="left: 300px; top: 150px">
-                  <div class="number1">6</div>
-                  <img
-                    class="picture"
-                    style="transform: translate(-300px, -150px)"
-                  />
-                </div>
-                <div class="tile img6" style="left: 0px; top: 300px">
-                  <div class="number1">7</div>
-                  <img
-                    class="picture"
-                    style="transform: translate(0, -300px)"
-                  />
-                </div>
-                <div class="tile img7" style="left: 150px; top: 300px">
-                  <div class="number1">8</div>
-                  <img
-                    class="picture"
-                    style="transform: translate(-150px, -300px)"
-                  />
-                </div>
-                <div class="tile img8" style="left: 300px; top: 300px">
-                  <img
-                    class="picture"
-                    style="transform: translate(-450px, -450px)"
-                  />
-                </div>
-              </div>
-            </div>
+      <!-- puzzle image -->
+      <div class="col-lg-5 my-auto">
+        <div style="text-align: center">
+          <div style="">
+            <h1 id="message"></h1>
           </div>
-        </div>
+          <div style="">
+            <h1 id="moves">MOVES 0</h1>
 
-        <!-- original image -->
-        <div class="col-lg-5 my-auto">
-          <div style="text-align: center">
-            <div style="">
-              <h1 id="message_ai"></h1>
-            </div>
-            <div style="">
-              <h1 id="moves_ai">MOVES: 0</h1>
-            </div>
+            <audio id="cheers" controls="none" preload="auto" style="display: none">
+              <source src="won.m4a" type="audio/mp3" />
+            </audio>
 
-            <div class="image-puzzle">
-              <div class="tiles">
-                <div class="tile img_ai0" style="left: 0px; top: 0px">
-                  <img class="picture" />
-                </div>
-                <div class="tile img_ai1" style="left: 150px; top: 0px">
-                  <img
-                    class="picture"
-                    style="transform: translate(-150px, 0)"
-                  />
-                </div>
-                <div class="tile img_ai2" style="left: 300px; top: 0px">
-                  <img
-                    class="picture"
-                    style="transform: translate(-300px, 0)"
-                  />
-                </div>
-                <div class="tile img_ai3" style="left: 0px; top: 150px">
-                  <img
-                    class="picture"
-                    style="transform: translate(0, -150px)"
-                  />
-                </div>
-                <div class="tile img_ai4" style="left: 150px; top: 150px">
-                  <img
-                    class="picture"
-                    style="transform: translate(-150px, -150px)"
-                  />
-                </div>
-                <div class="tile img_ai5" style="left: 300px; top: 150px">
-                  <img
-                    class="picture"
-                    style="transform: translate(-300px, -150px)"
-                  />
-                </div>
-                <div class="tile img_ai6" style="left: 0px; top: 300px">
-                  <img
-                    class="picture"
-                    style="transform: translate(0, -300px)"
-                  />
-                </div>
-                <div class="tile img_ai7" style="left: 150px; top: 300px">
-                  <img
-                    class="picture"
-                    style="transform: translate(-150px, -300px)"
-                  />
-                </div>
-                <div class="tile img_ai8" style="left: 300px; top: 300px">
-                  <img
-                    class="picture"
-                    style="transform: translate(-450px, -450px)"
-                  />
-                </div>
+            <audio id="cut" controls="none" preload="auto" style="display: none">
+              <source src="cut.mp4" type="audio/mp4" />
+            </audio>
+
+            <audio id="no" controls="none" preload="auto" style="display: none">
+              <source src="no.mp4" type="audio/mp4" />
+            </audio>
+          </div>
+
+          <div class="image-puzzle">
+            <!-- <canvas id="canvas" height="450px" width="450px"></canvas> -->
+            <div class="tiles">
+              <div class="tile img0" style="left: 0px; top: 0px">
+                <div class="number0">1</div>
+                <img class="picture" />
+              </div>
+              <div class="tile img1" style="left: 150px; top: 0px">
+                <div class="number1">2</div>
+                <img class="picture" style="transform: translate(-150px, 0)" />
+              </div>
+              <div class="tile img2" style="left: 300px; top: 0px">
+                <div class="number1">3</div>
+                <img class="picture" style="transform: translate(-300px, 0)" />
+              </div>
+              <div class="tile img3" style="left: 0px; top: 150px">
+                <div class="number1">4</div>
+                <img class="picture" style="transform: translate(0, -150px)" />
+              </div>
+              <div class="tile img4" style="left: 150px; top: 150px">
+                <div class="number1">5</div>
+                <img class="picture" style="transform: translate(-150px, -150px)" />
+              </div>
+              <div class="tile img5" style="left: 300px; top: 150px">
+                <div class="number1">6</div>
+                <img class="picture" style="transform: translate(-300px, -150px)" />
+              </div>
+              <div class="tile img6" style="left: 0px; top: 300px">
+                <div class="number1">7</div>
+                <img class="picture" style="transform: translate(0, -300px)" />
+              </div>
+              <div class="tile img7" style="left: 150px; top: 300px">
+                <div class="number1">8</div>
+                <img class="picture" style="transform: translate(-150px, -300px)" />
+              </div>
+              <div class="tile img8" style="left: 300px; top: 300px">
+                <img class="picture" style="transform: translate(-450px, -450px)" />
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Knowledge Message -->
-      <div class="row justify-content-end">
-        <div class="col-lg-10">
-          <div class="d-flex justify-content-center">
-            <div id="information" class="w-75 card text-white bg-dark mb-3">
-              <div class="card-header">Pojok Info Kamu</div>
-              <div class="card-body">
-                <h5 class="card-title">Lockdown</h5>
-                <p class="card-text">
-                  Lockdown merupakan kondisi di mana orang-orang tak boleh
-                  keluar dan masuk pada suatu daerah.
-                </p>
+      <!-- original image -->
+      <div class="col-lg-5 my-auto">
+        <div style="text-align: center">
+          <div style="">
+            <h1 id="message_ai"></h1>
+          </div>
+          <div style="">
+            <h1 id="moves_ai">MOVES: 0</h1>
+          </div>
+
+          <div class="image-puzzle">
+            <div class="tiles">
+              <div class="tile img_ai0" style="left: 0px; top: 0px">
+                <img class="picture" />
+              </div>
+              <div class="tile img_ai1" style="left: 150px; top: 0px">
+                <img class="picture" style="transform: translate(-150px, 0)" />
+              </div>
+              <div class="tile img_ai2" style="left: 300px; top: 0px">
+                <img class="picture" style="transform: translate(-300px, 0)" />
+              </div>
+              <div class="tile img_ai3" style="left: 0px; top: 150px">
+                <img class="picture" style="transform: translate(0, -150px)" />
+              </div>
+              <div class="tile img_ai4" style="left: 150px; top: 150px">
+                <img class="picture" style="transform: translate(-150px, -150px)" />
+              </div>
+              <div class="tile img_ai5" style="left: 300px; top: 150px">
+                <img class="picture" style="transform: translate(-300px, -150px)" />
+              </div>
+              <div class="tile img_ai6" style="left: 0px; top: 300px">
+                <img class="picture" style="transform: translate(0, -300px)" />
+              </div>
+              <div class="tile img_ai7" style="left: 150px; top: 300px">
+                <img class="picture" style="transform: translate(-150px, -300px)" />
+              </div>
+              <div class="tile img_ai8" style="left: 300px; top: 300px">
+                <img class="picture" style="transform: translate(-450px, -450px)" />
               </div>
             </div>
           </div>
@@ -287,389 +176,367 @@
       </div>
     </div>
 
-    <!-- Bootstrap core JavaScript -->
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
+    <!-- Knowledge Message -->
+    <div class="row justify-content-end">
+      <div class="col-lg-10">
+        <div class="d-flex justify-content-center">
+          <div id="information" class="w-75 card text-white bg-dark mb-3">
+            <div class="card-header">Pojok Info Kamu</div>
+            <div class="card-body">
+              <h5 class="card-title">Lockdown</h5>
+              <p class="card-text">
+                Lockdown merupakan kondisi di mana orang-orang tak boleh
+                keluar dan masuk pada suatu daerah.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
 
-    <script src="./algo/search-solution.js"></script>
-    <script src="./algo/arr_helper.js"></script>
-    <script src="./soal.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
 
-    <script>
-      var normArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-      var datasCurrInd = 0;
-      var delayTime = 1500;
-      changeCurrQuestion(0);
+  <script src="./algo/search-solution.js"></script>
+  <script src="./algo/arr_helper.js"></script>
+  <script src="./soal.js"></script>
 
-      function changeDifficulty(difficulty) {
-        if (difficulty == "easy") {
-          delayTime = 4000;
-          console.log(difficulty);
-        } else if (difficulty == "medium") {
-          delayTime = 1500;
-          console.log(difficulty);
-        } else if (difficulty == "hard") {
-          console.log(difficulty);
-          delayTime = 500;
-        }
+  <script>
+    var normArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    var datasCurrInd = 0;
+    var delayTime = 1500;
+    changeCurrQuestion(0);
+
+    function changeDifficulty(difficulty) {
+      if (difficulty == "easy") {
+        delayTime = 4000;
+        console.log(difficulty);
+      } else if (difficulty == "medium") {
+        delayTime = 1500;
+        console.log(difficulty);
+      } else if (difficulty == "hard") {
+        console.log(difficulty);
+        delayTime = 500;
       }
-
-      class ImgObj {
-        constructor(accessor) {
-          this.imgArr = [];
-          this.identifier = `img${accessor}`;
-          this.zeroPictureId = `img${accessor}8`;
-          this.moves = -1;
-          this.emptyPos = 9;
-          this.restart = 0;
-          this.moveId = `moves${accessor}`;
-          this.messageId = `message${accessor}`;
-        }
+    }
+    class ImgObj {
+      constructor(accessor) {
+        this.imgArr = [];
+        this.identifier = `img${accessor}`;
+        this.zeroPictureId = `img${accessor}8`;
+        this.moves = -1;
+        this.emptyPos = 9;
+        this.restart = 0;
+        this.moveId = `moves${accessor}`;
+        this.messageId = `message${accessor}`;
       }
+    }
+    var imgObject = new ImgObj("");
+    var imgObjectAI = new ImgObj("_ai");
+    showMessage(imgObject.messageId, "You");
+    showMessage(imgObjectAI.messageId, "Artificial Intelligence");
 
-      var imgObject = new ImgObj("");
-      var imgObjectAI = new ImgObj("_ai");
-
-      showMessage(imgObject.messageId, "You");
-      showMessage(imgObjectAI.messageId, "Artificial Intelligence");
-
-      function nextQuestion() {
-        if (datasCurrInd < datas.length - 1) {
-          datasCurrInd += 1;
-          changeCurrQuestion(datasCurrInd);
-          let informationElement = document.getElementById("information");
-          informationElement.style.display = "none";
-        }
-      }
-
-      function prevQuestion() {
-        if (0 <= datasCurrInd) {
-          datasCurrInd -= 1;
-          changeCurrQuestion(datasCurrInd);
-          let informationElement = document.getElementById("information");
-          informationElement.style.display = "none";
-        }
-      }
-
-      function changeCurrQuestion(index) {
-        let imageTiles = document.getElementsByClassName("picture");
-        let arrImgTiles = [...imageTiles];
-        arrImgTiles.forEach((element) => {
-          element.src = datas[index].location;
-        });
-
-        let cardTitle = document.getElementsByClassName("card-title")[0];
-        let cardText = document.getElementsByClassName("card-text")[0];
-        cardTitle.innerHTML = datas[index].title;
-        cardText.innerHTML = datas[index].description;
-
-        if (datasCurrInd == datas.length - 1) {
-          document.getElementById("next-button").disabled = true;
-        } else if (0 <= datasCurrInd) {
-          document.getElementById("previous-button").disabled = true;
-        }
-
-        if (datasCurrInd > 0) {
-          document.getElementById("previous-button").disabled = false;
-        }
-
-        if (datasCurrInd < datas.length - 1) {
-          document.getElementById("next-button").disabled = false;
-        }
-      }
-
-      function won() {
-        let img = null;
-        if (imgObject.restart == 1) {
-          showMessage(
-            imgObject.messageId,
-            "You won the game in " + imgObject.moves.toString() + " moves"
-          );
-          showMessage(imgObjectAI.messageId, "AI lose");
-          imgObjectAI.restart = 1;
-          showLastPicture(imgObject.zeroPictureId, 300, 300, -300, -300);
-        } else if (imgObjectAI.restart == 1) {
-          console.log("AI WIN");
-          showMessage(
-            imgObjectAI.messageId,
-            "AI won the game in " + imgObjectAI.moves.toString() + " moves"
-          );
-          showMessage(imgObject.messageId, "You lose");
-          showLastPicture(imgObjectAI.zeroPictureId, 300, 300, -300, -300);
-        }
-
-        let informationElement = document.getElementById("information");
-        informationElement.style.display = "block";
-        let au = document.getElementById("cheers");
-        au.play();
-        imgObject.moves = -1;
-        imgObjectAI.moves = -1;
-        window.removeEventListener("keydown", addGameControl);
-        document.getElementById("start-button").disabled = false;
-        document.getElementById("radio-easy").disabled = false;
-        document.getElementById("radio-medium").disabled = false;
-        document.getElementById("radio-hard").disabled = false;
+    function nextQuestion() {
+      if (datasCurrInd < datas.length - 1) {
+        datasCurrInd += 1;
         changeCurrQuestion(datasCurrInd);
-        console.log("finish WON");
-      }
-
-      function showLastPicture(pictureId, x, y, xOff, yOff) {
-        let imgElement = document.getElementsByClassName(pictureId)[0];
-        imgElement.style.top = y + "px";
-        imgElement.style.left = x + "px";
-        let imgInner = imgElement.childNodes[1];
-        imgInner.style.transform = "translate(" + xOff + "px, " + yOff + "px)";
-      }
-
-      function showMessage(messageId, message) {
-        let messageElement = document.getElementById(messageId);
-        messageElement.innerHTML = message;
-      }
-
-      // function restartProp(blankImageId) {
-      //   var img = document.getElementsByClassName(blankImageId)[0];
-      //   imgInner = img.childNodes[1];
-      //   imgInner.style.transform = "translate(-450px, -450px)";
-      //   message = document.getElementById("message");
-      //   message.innerHTML = "";
-      // }
-
-      // plotting random image and still checking is it win and still move component one by one
-      function draw(imageObject) {
-        imageObject.moves++;
-        // console.log(`solvable kah? ${isSolvable(imageObject.imgArr)}`)
-        // console.log("hello", moves);
-        mov = document.getElementById(imageObject.moveId);
-        mov.innerHTML = "MOVES: " + imageObject.moves.toString();
-        let isDiff;
-        isDiff = 0;
-
-        for (var i = 0; i < 9; i++) {
-          if (imageObject.imgArr[i] != normArr[i]) isDiff = 1;
-        }
-        // console.log(`diff position ${imageObject.imgArr}`);
-        // console.log(normArr);
-
-        for (var i = 0; i < 3; i++) {
-          for (var j = 0; j < 3; j++) {
-            component(i, j, imageObject);
-          }
-        }
-
-        console.log(isDiff);
-
-        if (isDiff == 0) {
-          imageObject.restart = 1;
-          won();
-        }
-      }
-
-      function component(x, y, imageObject) {
-        let text = imageObject.identifier;
-        let indexArr = x + 3 * y;
-        let imgPart = imageObject.imgArr[indexArr];
-        text = text + imgPart.toString();
-        let img = document.getElementsByClassName(text)[0];
-        // console.log(`textnya ${text}`,img);
-        img.style.left = 150 * x + "px";
-        img.style.top = 150 * y + "px";
-      }
-
-      function moveup(imageObject) {
-        console.log(`ke atas ${imageObject.emptyPos}`);
-        if (
-          imageObject.emptyPos == 9 ||
-          imageObject.emptyPos == 7 ||
-          imageObject.emptyPos == 8
-        ) {
-          au = document.getElementById("no");
-          au.play();
-        } else {
-          au = document.getElementById("cut");
-          au.play();
-          let curr = imageObject.emptyPos;
-          imageObject.emptyPos = imageObject.emptyPos + 3;
-          let next = imageObject.emptyPos;
-          imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
-          imageObject.imgArr[next - 1] = 8;
-          draw(imageObject);
-        }
-        console.log(imageObject.emptyPos);
-      }
-
-      function movedown(imageObject) {
-        if (
-          imageObject.emptyPos == 1 ||
-          imageObject.emptyPos == 2 ||
-          imageObject.emptyPos == 3
-        ) {
-          au = document.getElementById("no");
-          au.play();
-        } else {
-          au = document.getElementById("cut");
-          au.play();
-          let curr = imageObject.emptyPos;
-          imageObject.emptyPos = imageObject.emptyPos - 3;
-          let next = imageObject.emptyPos;
-          imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
-          imageObject.imgArr[next - 1] = 8;
-          draw(imageObject);
-        }
-        console.log(imageObject.emptyPos);
-      }
-
-      function moveleft(imageObject) {
-        if (
-          imageObject.emptyPos == 6 ||
-          imageObject.emptyPos == 9 ||
-          imageObject.emptyPos == 3
-        ) {
-          au = document.getElementById("no");
-          au.play();
-        } else {
-          au = document.getElementById("cut");
-          au.play();
-          let curr = imageObject.emptyPos;
-          imageObject.emptyPos = imageObject.emptyPos + 1;
-          let next = imageObject.emptyPos;
-          imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
-          imageObject.imgArr[next - 1] = 8;
-          draw(imageObject);
-        }
-        console.log(imageObject.emptyPos);
-      }
-
-      function moveright(imageObject) {
-        if (
-          imageObject.emptyPos == 1 ||
-          imageObject.emptyPos == 4 ||
-          imageObject.emptyPos == 7
-        ) {
-          au = document.getElementById("no");
-          au.play();
-        } else {
-          au = document.getElementById("cut");
-          au.play();
-          let curr = imageObject.emptyPos;
-          imageObject.emptyPos = imageObject.emptyPos - 1;
-          let next = imageObject.emptyPos;
-          imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
-          imageObject.imgArr[next - 1] = 8;
-          draw(imageObject);
-        }
-        console.log(imageObject.emptyPos);
-      }
-
-      //program start
-      function start() {
         let informationElement = document.getElementById("information");
         informationElement.style.display = "none";
-        console.log("Mulai");
-        let tempShuffledArr = shuffle([...normArr]);
-        // test case: [1,7,6,8,3,2,4,0,5]
-        imgObject.imgArr = [...tempShuffledArr];
-        imgObjectAI.imgArr = [...tempShuffledArr];
-        for (var i = 0; i <= 8; i++) {
-          if (imgObject.imgArr[i] == 8) {
-            imgObject.emptyPos = i + 1;
-            imgObjectAI.emptyPos = i + 1;
-          }
-        }
-        // console.log(`Ini mulai ${imgObject.imgArr} \n ${tempShuffledArr}`)
-        window.addEventListener("keydown", addGameControl);
-
-        showMessage(imgObject.messageId, "You");
-        showMessage(imgObjectAI.messageId, "Artificial Intelligence");
-        showLastPicture(imgObject.zeroPictureId, 300, 300, -450, -450);
-        showLastPicture(imgObjectAI.zeroPictureId, 300, 300, -450, -450);
-        imgObject.moves = -1;
-        imgObjectAI.moves = -1;
-        imgObject.restart = 0;
-        imgObjectAI.restart = 0;
-        draw(imgObject);
-        draw(imgObjectAI);
       }
+    }
 
-      function triggerStart() {
-        start();
-        document.getElementById("previous-button").disabled = true;
+    function prevQuestion() {
+      if (0 <= datasCurrInd) {
+        datasCurrInd -= 1;
+        changeCurrQuestion(datasCurrInd);
+        let informationElement = document.getElementById("information");
+        informationElement.style.display = "none";
+      }
+    }
+
+    function changeCurrQuestion(index) {
+      let imageTiles = document.getElementsByClassName("picture");
+      let arrImgTiles = [...imageTiles];
+      arrImgTiles.forEach((element) => {
+        element.src = datas[index].location;
+      });
+      let cardTitle = document.getElementsByClassName("card-title")[0];
+      let cardText = document.getElementsByClassName("card-text")[0];
+      cardTitle.innerHTML = datas[index].title;
+      cardText.innerHTML = datas[index].description;
+      if (datasCurrInd == datas.length - 1) {
         document.getElementById("next-button").disabled = true;
-        document.getElementById("start-button").disabled = true;
-        document.getElementById("radio-easy").disabled = true;
-        document.getElementById("radio-medium").disabled = true;
-        document.getElementById("radio-hard").disabled = true;
-        searchValueWithAI(imgObjectAI);
+      } else if (0 <= datasCurrInd) {
+        document.getElementById("previous-button").disabled = true;
       }
-
-      function addGameControl(e) {
-        key = e.which;
-        if (key == 37) {
-          e.preventDefault();
-          moveleft(imgObject);
-        }
-        if (key == 38) {
-          e.preventDefault();
-          console.log("up");
-          moveup(imgObject);
-        }
-        if (key == 39) {
-          e.preventDefault();
-          moveright(imgObject);
-        }
-        if (key == 40) {
-          e.preventDefault();
-          movedown(imgObject);
-        }
+      if (datasCurrInd > 0) {
+        document.getElementById("previous-button").disabled = false;
       }
+      if (datasCurrInd < datas.length - 1) {
+        document.getElementById("next-button").disabled = false;
+      }
+    }
 
-      function searchValueWithAI(imageObject) {
-        let tempShuffled = imageObject.imgArr;
-        let result = search(imgObjectAI);
-        // imgObjectAI.imgArr = tempShuffled;
-        // draw(imgObjectAI);
-        imgObjectAI.moves = -1;
-        // await sleep(3000);
-        console.log(
-          `HASILNYA ADALAH`,
-          result,
-          result.pathCost,
-          imgObjectAI,
-          imgObjectAI.restart
+    function won() {
+      let img = null;
+      if (imgObject.restart == 1) {
+        showMessage(
+          imgObject.messageId,
+          "You won the game in " + imgObject.moves.toString() + " moves"
         );
-        runSolution(result, imgObjectAI, result.pathCost);
+        showMessage(imgObjectAI.messageId, "AI lose");
+        imgObjectAI.restart = 1;
+        showLastPicture(imgObject.zeroPictureId, 300, 300, -300, -300);
+      } else if (imgObjectAI.restart == 1) {
+        console.log("AI WIN");
+        showMessage(
+          imgObjectAI.messageId,
+          "AI won the game in " + imgObjectAI.moves.toString() + " moves"
+        );
+        showMessage(imgObject.messageId, "You lose");
+        showLastPicture(imgObjectAI.zeroPictureId, 300, 300, -300, -300);
       }
+      let informationElement = document.getElementById("information");
+      informationElement.style.display = "block";
+      let au = document.getElementById("cheers");
+      au.play();
+      imgObject.moves = -1;
+      imgObjectAI.moves = -1;
+      window.removeEventListener("keydown", addGameControl);
+      document.getElementById("start-button").disabled = false;
+      document.getElementById("radio-easy").disabled = false;
+      document.getElementById("radio-medium").disabled = false;
+      document.getElementById("radio-hard").disabled = false;
+      changeCurrQuestion(datasCurrInd);
+      console.log("finish WON");
+    }
 
-      function runSolution(goalState, imageObject) {
-        if (goalState == null) {
-          return;
-        } else {
-          runSolution(goalState.previous, imageObject);
-          setTimeout(function () {
-            console.log(imageObject.restart);
-            if (imageObject.restart != 1) {
-              imageObject.imgArr = goalState.tiles;
-              draw(imageObject);
-            }
-          }, delayTime * goalState.pathCost);
+    function showLastPicture(pictureId, x, y, xOff, yOff) {
+      let imgElement = document.getElementsByClassName(pictureId)[0];
+      imgElement.style.top = y + "px";
+      imgElement.style.left = x + "px";
+      let imgInner = imgElement.childNodes[1];
+      imgInner.style.transform = "translate(" + xOff + "px, " + yOff + "px)";
+    }
+
+    function showMessage(messageId, message) {
+      let messageElement = document.getElementById(messageId);
+      messageElement.innerHTML = message;
+    }
+
+    function draw(imageObject) {
+      imageObject.moves++;
+      mov = document.getElementById(imageObject.moveId);
+      mov.innerHTML = "MOVES: " + imageObject.moves.toString();
+      let isDiff;
+      isDiff = 0;
+      for (var i = 0; i < 9; i++) {
+        if (imageObject.imgArr[i] != normArr[i]) isDiff = 1;
+      }
+      for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
+          component(i, j, imageObject);
         }
       }
+      console.log(isDiff);
+      if (isDiff == 0) {
+        imageObject.restart = 1;
+        won();
+      }
+    }
 
-      // ctx.font = "30px Arial";
-      // ctx.fillText("Hit S to start the game", 80, 210);
-    </script>
-  </body>
+    function component(x, y, imageObject) {
+      let text = imageObject.identifier;
+      let indexArr = x + 3 * y;
+      let imgPart = imageObject.imgArr[indexArr];
+      text = text + imgPart.toString();
+      let img = document.getElementsByClassName(text)[0];
+      img.style.left = 150 * x + "px";
+      img.style.top = 150 * y + "px";
+    }
+
+    function moveup(imageObject) {
+      console.log(`ke atas ${imageObject.emptyPos}`);
+      if (
+        imageObject.emptyPos == 9 ||
+        imageObject.emptyPos == 7 ||
+        imageObject.emptyPos == 8
+      ) {
+        au = document.getElementById("no");
+        au.play();
+      } else {
+        au = document.getElementById("cut");
+        au.play();
+        let curr = imageObject.emptyPos;
+        imageObject.emptyPos = imageObject.emptyPos + 3;
+        let next = imageObject.emptyPos;
+        imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
+        imageObject.imgArr[next - 1] = 8;
+        draw(imageObject);
+      }
+      console.log(imageObject.emptyPos);
+    }
+
+    function movedown(imageObject) {
+      if (
+        imageObject.emptyPos == 1 ||
+        imageObject.emptyPos == 2 ||
+        imageObject.emptyPos == 3
+      ) {
+        au = document.getElementById("no");
+        au.play();
+      } else {
+        au = document.getElementById("cut");
+        au.play();
+        let curr = imageObject.emptyPos;
+        imageObject.emptyPos = imageObject.emptyPos - 3;
+        let next = imageObject.emptyPos;
+        imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
+        imageObject.imgArr[next - 1] = 8;
+        draw(imageObject);
+      }
+      console.log(imageObject.emptyPos);
+    }
+
+    function moveleft(imageObject) {
+      if (
+        imageObject.emptyPos == 6 ||
+        imageObject.emptyPos == 9 ||
+        imageObject.emptyPos == 3
+      ) {
+        au = document.getElementById("no");
+        au.play();
+      } else {
+        au = document.getElementById("cut");
+        au.play();
+        let curr = imageObject.emptyPos;
+        imageObject.emptyPos = imageObject.emptyPos + 1;
+        let next = imageObject.emptyPos;
+        imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
+        imageObject.imgArr[next - 1] = 8;
+        draw(imageObject);
+      }
+      console.log(imageObject.emptyPos);
+    }
+
+    function moveright(imageObject) {
+      if (
+        imageObject.emptyPos == 1 ||
+        imageObject.emptyPos == 4 ||
+        imageObject.emptyPos == 7
+      ) {
+        au = document.getElementById("no");
+        au.play();
+      } else {
+        au = document.getElementById("cut");
+        au.play();
+        let curr = imageObject.emptyPos;
+        imageObject.emptyPos = imageObject.emptyPos - 1;
+        let next = imageObject.emptyPos;
+        imageObject.imgArr[curr - 1] = imageObject.imgArr[next - 1];
+        imageObject.imgArr[next - 1] = 8;
+        draw(imageObject);
+      }
+      console.log(imageObject.emptyPos);
+    }
+    //program start
+    function start() {
+      let informationElement = document.getElementById("information");
+      informationElement.style.display = "none";
+      console.log("Mulai");
+      let tempShuffledArr = shuffle([...normArr]);
+      imgObject.imgArr = [...tempShuffledArr];
+      imgObjectAI.imgArr = [...tempShuffledArr];
+      for (var i = 0; i <= 8; i++) {
+        if (imgObject.imgArr[i] == 8) {
+          imgObject.emptyPos = i + 1;
+          imgObjectAI.emptyPos = i + 1;
+        }
+      }
+      window.addEventListener("keydown", addGameControl);
+      showMessage(imgObject.messageId, "You");
+      showMessage(imgObjectAI.messageId, "Artificial Intelligence");
+      showLastPicture(imgObject.zeroPictureId, 300, 300, -450, -450);
+      showLastPicture(imgObjectAI.zeroPictureId, 300, 300, -450, -450);
+      imgObject.moves = -1;
+      imgObjectAI.moves = -1;
+      imgObject.restart = 0;
+      imgObjectAI.restart = 0;
+      draw(imgObject);
+      draw(imgObjectAI);
+    }
+
+    function triggerStart() {
+      start();
+      document.getElementById("previous-button").disabled = true;
+      document.getElementById("next-button").disabled = true;
+      document.getElementById("start-button").disabled = true;
+      document.getElementById("radio-easy").disabled = true;
+      document.getElementById("radio-medium").disabled = true;
+      document.getElementById("radio-hard").disabled = true;
+      searchValueWithAI(imgObjectAI);
+    }
+
+    function addGameControl(e) {
+      key = e.which;
+      if (key == 37) {
+        e.preventDefault();
+        moveleft(imgObject);
+      }
+      if (key == 38) {
+        e.preventDefault();
+        console.log("up");
+        moveup(imgObject);
+      }
+      if (key == 39) {
+        e.preventDefault();
+        moveright(imgObject);
+      }
+      if (key == 40) {
+        e.preventDefault();
+        movedown(imgObject);
+      }
+    }
+
+    function searchValueWithAI(imageObject) {
+      let tempShuffled = imageObject.imgArr;
+      let result = search(imgObjectAI);
+      imgObjectAI.moves = -1;
+      console.log(
+        `HASILNYA ADALAH`,
+        result,
+        result.pathCost,
+        imgObjectAI,
+        imgObjectAI.restart
+      );
+      runSolution(result, imgObjectAI, result.pathCost);
+    }
+
+    function runSolution(goalState, imageObject) {
+      if (goalState == null) {
+        return;
+      } else {
+        runSolution(goalState.previous, imageObject);
+        setTimeout(function() {
+          console.log(imageObject.restart);
+          if (imageObject.restart != 1) {
+            imageObject.imgArr = goalState.tiles;
+            draw(imageObject);
+          }
+        }, delayTime * goalState.pathCost);
+      }
+    }
+  </script>
+</body>
+
 </html>

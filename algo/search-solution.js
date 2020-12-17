@@ -13,7 +13,6 @@ function search(imageObject) {
   frontier.push(new State(imageObject.imgArr, 0, null, null));
   while (frontier.length > 0) {
     let node = getSmallestInFrontier(frontier);
-    // await sleep(1)
     imageObject.imgArr = node.tiles
     if (isGoal(node.tiles) || imageObject.restart == 1) {
       console.log("MASUK KE GOAL")
@@ -23,7 +22,6 @@ function search(imageObject) {
     } else if (imageObject.restart == 2) {
       return;
     }
-    // draw(imageObject)
     explored.push(node);
     let childs = getChildState(node);
     for (let i = 0; i < childs.length; i++) {
@@ -168,5 +166,3 @@ function printSolution(goalState) {
     console.log(goalState.action);
   }
 }
-
-// export { search, isGoal, State };
