@@ -69,6 +69,15 @@
                   </div>
                 </div>
               </div>
+              <h2 class="d-flex justify-content-center mt-4" id="difficulty">Tingkat kesulitan</h2>
+              <div class="switch-field d-flex justify-content-center">
+                <input onclick="changeDifficulty('easy')" type="radio" id="radio-easy" name="switch-two" value="Easy"  />
+                <label for="radio-easy" style="font-size:0.7vw">Easy</label>
+                <input onclick="changeDifficulty('medium')" type="radio" id="radio-medium" name="switch-two" value="Medium" checked/>
+                <label for="radio-medium" style="font-size:0.7vw">Medium</label>
+                <input onclick="changeDifficulty('hard')" type="radio" id="radio-hard" name="switch-two" value="Hard" />
+                <label for="radio-hard" style="font-size:0.7vw">Hard</label>
+              </div>
               <div class="d-flex justify-content-center mt-4">
                 <button
                   id="start-button"
@@ -93,7 +102,7 @@
               <h1 id="message"></h1>
             </div>
             <div style="">
-              <h1 id="moves">MOVES: 0</h1>
+              <h1 id="moves">MOVES 0</h1>
 
               <audio
                 id="cheers"
@@ -101,7 +110,7 @@
                 preload="auto"
                 style="display: none"
               >
-                <source src="aud.mp3" type="audio/mp3" />
+                <source src="won.m4a" type="audio/mp3" />
               </audio>
 
               <audio
@@ -303,7 +312,21 @@
     <script>
       var normArr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
       var datasCurrInd = 0;
+      var delayTime = 1500;
       changeCurrQuestion(0);
+
+      function changeDifficulty(difficulty) {
+        if (difficulty == "easy") {
+          delayTime = 4000;
+          console.log(difficulty);
+        } else if (difficulty == "medium") {
+          delayTime = 1500;
+          console.log(difficulty);
+        } else if (difficulty == "hard") {
+          console.log(difficulty);
+          delayTime = 500;
+        }
+      }
 
       class ImgObj {
         constructor(accessor) {
@@ -397,6 +420,9 @@
         imgObjectAI.moves = -1;
         window.removeEventListener("keydown", addGameControl);
         document.getElementById("start-button").disabled = false;
+        document.getElementById("radio-easy").disabled = false;
+        document.getElementById("radio-medium").disabled = false;
+        document.getElementById("radio-hard").disabled = false;
         changeCurrQuestion(datasCurrInd);
         console.log("finish WON");
       }
@@ -583,6 +609,9 @@
         document.getElementById("previous-button").disabled = true;
         document.getElementById("next-button").disabled = true;
         document.getElementById("start-button").disabled = true;
+        document.getElementById("radio-easy").disabled = true;
+        document.getElementById("radio-medium").disabled = true;
+        document.getElementById("radio-hard").disabled = true;
         searchValueWithAI(imgObjectAI);
       }
 
@@ -635,7 +664,7 @@
               imageObject.imgArr = goalState.tiles;
               draw(imageObject);
             }
-          }, 1000 * goalState.pathCost);
+          }, delayTime * goalState.pathCost);
         }
       }
 

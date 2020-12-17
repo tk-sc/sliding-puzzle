@@ -191,7 +191,7 @@ canvas {
 }
 
 .switch-field input:checked + label {
-  background-color: #007bff;
+  background-color: #e8934e;
   box-shadow: none;
 }
 
