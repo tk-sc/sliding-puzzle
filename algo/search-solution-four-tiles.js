@@ -1,5 +1,3 @@
-console.log("Search Algorithm Set UP!");
-
 function search(tiles) {
   let frontier = [];
   let explored = [];
@@ -8,7 +6,7 @@ function search(tiles) {
   while (frontier.length > 0) {
     let node = getSmallestInFrontier(frontier);
     explored.push(node);
-    console.log(frontier.length);
+
     if (isGoal(node)) {
       goal = node;
     }
@@ -19,7 +17,6 @@ function search(tiles) {
       }
     }
   }
-  console.log(goal);
 }
 
 function heuristicCost(tiles) {

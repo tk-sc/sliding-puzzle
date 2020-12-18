@@ -20,15 +20,17 @@
 </head>
 
 <body>
+  <!-- REFERENCES TAMBAHIN -->
+
   <!-- Navigation -->
   <div class="container-fluid mt-5">
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mb-5">
       <h1 class="title">COVID-19 PUZZLE</h1>
     </div>
 
-    <div class="row mb-5 mt-5">
-      <div class="col-lg-2 my-auto">
-        <div class="d-flex align-items-center">
+    <div class="row mb-5 mt-2">
+      <div class="col-lg-2 col-12 my-auto">
+        <div class="d-flex align-items-center" style="flex-direction: column">
           <div>
             <div class="w-100 h-100 d-flex justify-content-center">
               <div class="image-preview d-flex align-items-center">
@@ -59,17 +61,17 @@
                 Start
               </button>
             </div>
-            <div class="legend d-flex justify-content-center mt-3">
-              Gerakan puzzle menggunakan panah :)
+            <div class="legend d-flex justify-content-center mt-3 mb-5">
+              Gerakan puzzle menggunakan panah keyboard :)
             </div>
           </div>
         </div>
       </div>
 
       <!-- puzzle image -->
-      <div class="col-lg-5 my-auto">
+      <div class="col-lg-5 col-12 mb-5">
         <div style="text-align: center">
-          <div style="">
+          <div class="mt-3">
             <h1 id="message"></h1>
           </div>
           <div style="">
@@ -131,10 +133,10 @@
         </div>
       </div>
 
-      <!-- original image -->
-      <div class="col-lg-5 my-auto">
+      <!-- AI image -->
+      <div class="col-lg-5 col-12 mb-5">
         <div style="text-align: center">
-          <div style="">
+          <div class="mt-3">
             <h1 id="message_ai"></h1>
           </div>
           <div style="">
@@ -220,12 +222,9 @@
     function changeDifficulty(difficulty) {
       if (difficulty == "easy") {
         delayTime = 4000;
-        console.log(difficulty);
       } else if (difficulty == "medium") {
         delayTime = 1500;
-        console.log(difficulty);
       } else if (difficulty == "hard") {
-        console.log(difficulty);
         delayTime = 500;
       }
     }
@@ -298,7 +297,6 @@
         imgObjectAI.restart = 1;
         showLastPicture(imgObject.zeroPictureId, 300, 300, -300, -300);
       } else if (imgObjectAI.restart == 1) {
-        console.log("AI WIN");
         showMessage(
           imgObjectAI.messageId,
           "AI won the game in " + imgObjectAI.moves.toString() + " moves"
@@ -318,7 +316,6 @@
       document.getElementById("radio-medium").disabled = false;
       document.getElementById("radio-hard").disabled = false;
       changeCurrQuestion(datasCurrInd);
-      console.log("finish WON");
     }
 
     function showLastPicture(pictureId, x, y, xOff, yOff) {
@@ -348,7 +345,6 @@
           component(i, j, imageObject);
         }
       }
-      console.log(isDiff);
       if (isDiff == 0) {
         imageObject.restart = 1;
         won();
@@ -366,7 +362,6 @@
     }
 
     function moveup(imageObject) {
-      console.log(`ke atas ${imageObject.emptyPos}`);
       if (
         imageObject.emptyPos == 9 ||
         imageObject.emptyPos == 7 ||
@@ -384,7 +379,6 @@
         imageObject.imgArr[next - 1] = 8;
         draw(imageObject);
       }
-      console.log(imageObject.emptyPos);
     }
 
     function movedown(imageObject) {
@@ -405,7 +399,6 @@
         imageObject.imgArr[next - 1] = 8;
         draw(imageObject);
       }
-      console.log(imageObject.emptyPos);
     }
 
     function moveleft(imageObject) {
@@ -426,7 +419,6 @@
         imageObject.imgArr[next - 1] = 8;
         draw(imageObject);
       }
-      console.log(imageObject.emptyPos);
     }
 
     function moveright(imageObject) {
@@ -447,13 +439,11 @@
         imageObject.imgArr[next - 1] = 8;
         draw(imageObject);
       }
-      console.log(imageObject.emptyPos);
     }
     //program start
     function start() {
       let informationElement = document.getElementById("information");
       informationElement.style.display = "none";
-      console.log("Mulai");
       let tempShuffledArr = shuffle([...normArr]);
       imgObject.imgArr = [...tempShuffledArr];
       imgObjectAI.imgArr = [...tempShuffledArr];
@@ -495,7 +485,6 @@
       }
       if (key == 38) {
         e.preventDefault();
-        console.log("up");
         moveup(imgObject);
       }
       if (key == 39) {
@@ -512,13 +501,6 @@
       let tempShuffled = imageObject.imgArr;
       let result = search(imgObjectAI);
       imgObjectAI.moves = -1;
-      console.log(
-        `HASILNYA ADALAH`,
-        result,
-        result.pathCost,
-        imgObjectAI,
-        imgObjectAI.restart
-      );
       runSolution(result, imgObjectAI, result.pathCost);
     }
 
@@ -528,7 +510,6 @@
       } else {
         runSolution(goalState.previous, imageObject);
         setTimeout(function() {
-          console.log(imageObject.restart);
           if (imageObject.restart != 1) {
             imageObject.imgArr = goalState.tiles;
             draw(imageObject);
@@ -540,3 +521,4 @@
 </body>
 
 </html>
+

@@ -59,16 +59,12 @@
         if (im[i] == 0) empty = i + 1;
       }
 
-      console.log(empty);
-
       ctx.clearRect(0, 0, 450, 450);
       restart = 0;
     }
     for (var i = 0; i < 9; i++) {
       if (im[i] != ar[i]) t = 1;
     }
-    console.log(im);
-    console.log(ar);
 
     for (var i = 0; i < 3; i++) {
       for (var j = 0; j < 3; j++) {
@@ -76,10 +72,8 @@
       }
     }
 
-    console.log(t);
 
     if (t == 0) {
-      console.log("one more");
       won();
     }
   }
@@ -122,7 +116,6 @@
       im[next - 1] = 0;
       draw();
     }
-    console.log(empty);
   }
 
   function movedown() {
@@ -148,7 +141,6 @@
       draw();
     }
 
-    console.log(empty);
   }
 
   function moveleft() {
@@ -175,7 +167,6 @@
       im[next - 1] = 0;
       draw();
     }
-    console.log(empty);
   }
 
   function moveright() {
@@ -201,7 +192,6 @@
       im[next - 1] = 0;
       draw();
     }
-    console.log(empty);
   }
 
   window.addEventListener("keydown", function (e) {

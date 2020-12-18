@@ -1,5 +1,3 @@
-console.log("Search Algorithm Set UP!");
-
 //code taken from https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -15,9 +13,9 @@ function search(imageObject) {
     let node = getSmallestInFrontier(frontier);
     imageObject.imgArr = node.tiles
     if (isGoal(node.tiles) || imageObject.restart == 1) {
-      console.log("MASUK KE GOAL")
+  
       goal = node;
-      console.log(`banyaknya explored ${explored.length}`)
+  
       break;
     } else if (imageObject.restart == 2) {
       return;
@@ -30,7 +28,6 @@ function search(imageObject) {
       }
     }
   }
-  console.log(goal);
   printSolution(goal);
   return goal;
 }
@@ -163,6 +160,6 @@ function printSolution(goalState) {
     return;
   } else {
     printSolution(goalState.previous);
-    console.log(goalState.action);
+
   }
 }

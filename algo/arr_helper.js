@@ -5,9 +5,7 @@ function shuffle(array) {
   let tempArr = [...array];
 
   // shuffling
-  console.log(`BISA GK ${tempArr} ${!isSolvable(tempArr)} ${isGoal(tempArr)}`)
   while (!isSolvable(tempArr) || isGoal(tempArr)) {
-    console.log("shuffling")
     tempArr = [...array];
     currInd = array.length;
     while (0 !== currInd) {
@@ -19,7 +17,6 @@ function shuffle(array) {
       tempArr[generatedRandomIndex] = tempVal;
     }
   }
-  console.log(`Return from shuffle ${tempArr}`)
   return tempArr;
 }
 
